@@ -21,6 +21,7 @@ import QGroundControl.Palette               1.0
 
 //-------------------------------------------------------------------------
 //-- ROI Indicator
+/*
 Item {
     id:                     _root
     width:                  showIndicator ? roiIcon.width : 0
@@ -89,3 +90,4 @@ Item {
         }
     }
 }
+*/

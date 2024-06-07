@@ -72,6 +72,8 @@ Item {
         spacing:    0
         height:     parent.height
 
+        // Remove or comment out this section to hide the flight mode icon and label
+        /*
         QGCColoredImage {
             id:         flightModeIcon
             width:      ScreenTools.defaultFontPixelWidth * 2
@@ -93,10 +95,12 @@ Item {
             font.pointSize:     fontPointSize
             Layout.alignment:   Qt.AlignVCenter
         }
+        */
     }
 
     QGCMouseArea {
         anchors.fill:   parent
         onClicked:      mainWindow.showIndicatorPopup(_root, flightModeMenu)
+        visible:        false // Hide the flight modes menu
     }
 }

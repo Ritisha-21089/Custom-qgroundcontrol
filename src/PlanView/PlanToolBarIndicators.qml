@@ -128,136 +128,25 @@ Item {
         columnSpacing:          0
         columns:                4
 
-        GridLayout {
-            columns:                8
-            rowSpacing:             _rowSpacing
-            columnSpacing:          _labelToValueSpacing
-            Layout.alignment:       Qt.AlignVCenter | Qt.AlignHCenter
+        visible: false // Hide the mission stats section
+    }
 
-            QGCLabel {
-                text:               qsTr("Selected Waypoint")
-                Layout.columnSpan:  8
-                font.pointSize:     ScreenTools.smallFontPointSize
-            }
+    QGCButton {
+        id:          uploadButton
+        text:        _controllerDirty ? qsTr("Apply") : qsTr("Upload")
+        enabled:     !_controllerSyncInProgress
+        visible:     !_controllerOffline && !_controllerSyncInProgress && !uploadCompleteText.visible
+        primary:     _controllerDirty
+        onClicked:   _planMasterController.upload()
 
-            QGCLabel { text: qsTr("Alt diff:"); font.pointSize: _dataFontSize; }
-            QGCLabel {
-                text:                   _altDifferenceText
-                font.pointSize:         _dataFontSize
-                Layout.minimumWidth:    _mediumValueWidth
-            }
-
-            Item { width: 1; height: 1 }
-
-            QGCLabel { text: qsTr("Azimuth:"); font.pointSize: _dataFontSize; }
-            QGCLabel {
-                text:                   _azimuthText
-                font.pointSize:         _dataFontSize
-                Layout.minimumWidth:    _smallValueWidth
-            }
-
-            Item { width: 1; height: 1 }
-
-            QGCLabel { text: qsTr("Dist prev WP:"); font.pointSize: _dataFontSize; }
-            QGCLabel {
-                text:                   _distanceText
-                font.pointSize:         _dataFontSize
-                Layout.minimumWidth:    _largeValueWidth
-            }
-
-            QGCLabel { text: qsTr("Gradient:"); font.pointSize: _dataFontSize; }
-            QGCLabel {
-                text:                   _gradientText
-                font.pointSize:         _dataFontSize
-                Layout.minimumWidth:    _mediumValueWidth
-            }
-
-            Item { width: 1; height: 1 }
-
-            QGCLabel { text: qsTr("Heading:"); font.pointSize: _dataFontSize; }
-            QGCLabel {
-                text:                   _headingText
-                font.pointSize:         _dataFontSize
-                Layout.minimumWidth:    _smallValueWidth
-            }
-        }
-
-        GridLayout {
-            columns:                5
-            rowSpacing:             _rowSpacing
-            columnSpacing:          _labelToValueSpacing
-            Layout.alignment:       Qt.AlignVCenter | Qt.AlignHCenter
-
-            QGCLabel {
-                text:               qsTr("Total Mission")
-                Layout.columnSpan:  5
-                font.pointSize:     ScreenTools.smallFontPointSize
-            }
-
-            QGCLabel { text: qsTr("Distance:"); font.pointSize: _dataFontSize; }
-            QGCLabel {
-                text:                   _missionDistanceText
-                font.pointSize:         _dataFontSize
-                Layout.minimumWidth:    _largeValueWidth
-            }
-
-            Item { width: 1; height: 1 }
-
-            QGCLabel { text: qsTr("Max telem dist:"); font.pointSize: _dataFontSize; }
-            QGCLabel {
-                text:                   _missionMaxTelemetryText
-                font.pointSize:         _dataFontSize
-                Layout.minimumWidth:    _largeValueWidth
-            }
-
-            QGCLabel { text: qsTr("Time:"); font.pointSize: _dataFontSize; }
-            QGCLabel {
-                text:                   getMissionTime()
-                font.pointSize:         _dataFontSize
-                Layout.minimumWidth:    _largeValueWidth
-            }
-        }
-
-        GridLayout {
-            columns:                3
-            rowSpacing:             _rowSpacing
-            columnSpacing:          _labelToValueSpacing
-            Layout.alignment:       Qt.AlignVCenter | Qt.AlignHCenter
-            visible:                _batteryInfoAvailable
-
-            QGCLabel {
-                text:               qsTr("Battery")
-                Layout.columnSpan:  3
-                font.pointSize:     ScreenTools.smallFontPointSize
-            }
-
-            QGCLabel { text: qsTr("Batteries required:"); font.pointSize: _dataFontSize; }
-            QGCLabel {
-                text:                   _batteriesRequiredText
-                font.pointSize:         _dataFontSize
-                Layout.minimumWidth:    _mediumValueWidth
-            }
-
-            Item { width: 1; height: 1 }
-        }
-
-        QGCButton {
-            id:          uploadButton
-            text:        _controllerDirty ? qsTr("Upload Required") : qsTr("Upload")
-            enabled:     !_controllerSyncInProgress
-            visible:     !_controllerOffline && !_controllerSyncInProgress && !uploadCompleteText.visible
-            primary:     _controllerDirty
-            onClicked:   _planMasterController.upload()
-
-            PropertyAnimation on opacity {
-                easing.type:    Easing.OutQuart
-                from:           0.5
-                to:             1
-                loops:          Animation.Infinite
-                running:        _controllerDirty && !_controllerSyncInProgress
-                alwaysRunToEnd: true
-                duration:       2000
-            }
+        PropertyAnimation on opacity {
+            easing.type:    Easing.OutQuart
+            from:           0.5
+            to:             1
+            loops:          Animation.Infinite
+            running:        _controllerDirty && !_controllerSyncInProgress
+            alwaysRunToEnd: true
+            duration:       2000
         }
     }
 
@@ -269,13 +158,7 @@ Item {
         height:         4
         width:          _controllerProgressPct * parent.width
         color:          qgcPal.colorGreen
-        visible:        false
-
-        onVisibleChanged: {
-            if (visible) {
-                largeProgressBar._userHide = false
-            }
-        }
+        visible:        false // Hide the progress bar
     }
 
     // Large mission download progress bar
@@ -286,7 +169,7 @@ Item {
         anchors.right:  parent.right
         height:         parent.height
         color:          qgcPal.window
-        visible:        _showLargeProgress
+        visible:        false // Hide the large progress bar
 
         property bool _userHide:                false
         property bool _showLargeProgress:       progressBar.visible && !_userHide && qgcPal.globalTheme === QGCPalette.Light
@@ -324,4 +207,3 @@ Item {
         }
     }
 }
-

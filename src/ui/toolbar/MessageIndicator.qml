@@ -20,6 +20,7 @@ import QGroundControl.Palette               1.0
 
 //-------------------------------------------------------------------------
 //-- Message Indicator
+/*
 Item {
     id:             _root
     width:          height
@@ -163,3 +164,4 @@ Item {
         }
     }
 }
+*/

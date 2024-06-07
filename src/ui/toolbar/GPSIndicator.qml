@@ -18,6 +18,7 @@ import QGroundControl.Palette               1.0
 
 //-------------------------------------------------------------------------
 //-- GPS Indicator
+/*
 Item {
     id:             _root
     width:          (gpsValuesColumn.x + gpsValuesColumn.width) * 1.1
@@ -115,3 +116,4 @@ Item {
         }
     }
 }
+*/

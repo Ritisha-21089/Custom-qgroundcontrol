@@ -314,12 +314,13 @@ QString FirmwarePlugin::vehicleImageOpaque(const Vehicle*) const
 
 QString FirmwarePlugin::vehicleImageOutline(const Vehicle*) const
 {
-    return QStringLiteral("/qmlimages/vehicleArrowOutline.svg");
+    // return QStringLiteral("/qmlimages/vehicleArrowOutline.svg");
+    return QStringLiteral("/qmlimages/resources/drone_icon.jpg");
 }
 
 QString FirmwarePlugin::vehicleImageCompass(const Vehicle*) const
 {
-    return QStringLiteral("/qmlimages/compassInstrumentArrow.svg");
+    return QStringLiteral("/qmlimages/resources/drone_icon.jpg");///compassInstrumentArrow.svg");
 }
 
 const QVariantList& FirmwarePlugin::toolIndicators(const Vehicle*)

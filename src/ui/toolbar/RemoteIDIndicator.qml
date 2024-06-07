@@ -60,16 +60,16 @@ Item {
 
     function getRIDIcon() {
         switch (remoteIDState) {
-            case RemoteIDIndicator.RIDState.HEALTHY: 
+            case RemoteIDIndicator.RIDState.HEALTHY:
                 return "/qmlimages/RidIconGreen.svg"
                 break
-            case RemoteIDIndicator.RIDState.WARNING: 
+            case RemoteIDIndicator.RIDState.WARNING:
                 return "/qmlimages/RidIconYellow.svg"
                 break
-            case RemoteIDIndicator.RIDState.ERROR: 
+            case RemoteIDIndicator.RIDState.ERROR:
                 return "/qmlimages/RidIconRed.svg"
                 break
-            case RemoteIDIndicator.RIDState.UNAVAILABLE: 
+            case RemoteIDIndicator.RIDState.UNAVAILABLE:
                 return "/qmlimages/RidIconGrey.svg"
                 break
             default:
